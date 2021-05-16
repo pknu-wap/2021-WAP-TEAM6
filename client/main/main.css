@@ -1,44 +1,33 @@
-* {
+html, body{
     margin: 0; 
     padding: 0; 
 }
+}
 body {
-    background: darksalmon;
     display: inline;
 }
-.menu{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    padding-bottom: 40px;
+#main {
+    background-image: url(home5.jpg);
+    background-size: cover;
+    background-position: center center;
+    width: 100vw;
+    height: 100vh;
 }
-.menu a{
-    font-size: 40px;
-    color: white;
-    text-decoration: none;
-    position: relative;
-    padding: 40px 12px 0px 12px;
-}
-.menu a::after {
-    content: "";
+#contents {
+    color: black;
+    text-align: center;
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 4px;
-    background: darkgrey;
-    transition: all .5s ease-out;
-}
-.menu a:hover::after {
     width: 100%;
+    top: 5%;
 }
-.back img{
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+h1{
+    margin:0;
+    font-size: 50px;
+    padding-bottom: 20px;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 0px 15px
 }
