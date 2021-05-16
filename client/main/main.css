@@ -18,7 +18,7 @@ html, body{
 }
 h1{
     margin:0;
-    font-size: 70px;
+    font-size: 80px;
     padding-bottom: 30px;
     font-family: 'Dancing Script', cursive;
     color:rgb(207, 218, 62);
@@ -26,7 +26,7 @@ h1{
 a {
     color: inherit;
     text-decoration: none;
-    font-size: 40px;
+    font-size: 45px;
     padding: 0px 20px;
     font-family: 'Do Hyeon', sans-serif;
 }
