@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ transfer.subject }}</title>
+
+    <style>
+        .subtitle
+    {
+        text-align: center;
+        width: 700px;
+        height: 300px;
+        margin-left: 409px;
+    }
+    a {
+        text-decoration: none; 
+        color: inherit;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    .subtitle th, 
+    .subtitle td {
+        border: 1px solid black;
+    }
+    .lower-botton {
+        margin-left: 1050px;
+    }
+    </style>
+</head>
+
+
+<div class="container my-3">
+    <h2 class="border-bottom py-2">{{ transfer.subject }}</h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{{ transfer.content }}</div>
+            {% if not images %}
+            <div class="d-flex justify-content-end">
+                <div class="badge badge-light p-2">
+                    <div>등록된 사진이 없습니다.</div>
+                    {{ transfer.create_date|datetime }}
+                </div>
+            {% else %}
+            {% for img in images %}            
+            <img src="data:;base64,{{ img }}" height="50%"  width="50%"/>
+            <ul></ul>
+            {% endfor %}
+            <div class="d-flex justify-content-end">
+                <div class="badge badge-light p-2">
+                    {{ transfer.create_date|datetime }}
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    <h5 class="border-bottom my-3 py-2">{{ transfer.transfer_set|length }}개의 답변이 있습니다.</h5>
+    {% for answer in transfer.transfer_set %}
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
+            <div class="d-flex justify-content-end">
+                <div class="badge badge-light p-2">
+                    {{ answer.create_date|datetime }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <form action="{{ url_for('t_answer.create', transfer_id=transfer.id) }}" method="post" class="my-3">
+        {{ form.csrf_token }}
+        <!-- 오류표시 시작 -->
+        {% for field, errors in form.errors.items() %}
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ form[field].label }}</strong>: {{ ', '.join(errors) }}
+        </div>
+        {% endfor %}
+        <!-- 오류표시 끝 -->
+        <div class="form-group">
+            <textarea name="content" id="content" class="form-control" rows="10"></textarea>
+        </div>
+        <input type="submit" value="답변등록" class="lower-botton">
+    </form>
+</div>
+
+{% endblock %}
